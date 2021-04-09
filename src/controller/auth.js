@@ -9,7 +9,7 @@ const signin = (req, res, next) => {
       if (err) {
         return next(createError(500, error))
       }
-      return res.json({ user })
+      return res.json({ success: true, user })
     })
   })(req, res, next)
 }
@@ -20,7 +20,7 @@ const signup = (req, res, next) => {
     if (!user) return next(createError(401, options))
     req.logIn(user, (err) => {
       if (err) return next(createError(500, error))
-      return res.status(201).json({ user })
+      return res.status(201).json({ success: true, user })
     })
   })(req, res, next)
 }

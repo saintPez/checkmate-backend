@@ -8,7 +8,7 @@ router.post('/signin', signin)
 router.post('/signup', signup)
 
 router.get('/user', logIn, (req, res) => {
-  res.status(200).json({ user: req.user })
+  res.status(200).json({ success: true, user: req.user })
 })
 
 module.exports = router
