@@ -43,9 +43,10 @@ passport.use(
 )
 
 passport.serializeUser((user, done) => {
-  done(null, user)
+  done(null, user.id)
 })
 
-passport.deserializeUser((user, done) => {
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findOne({ where: { id: id } })
   done(null, user)
 })
