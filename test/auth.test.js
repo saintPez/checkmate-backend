@@ -35,7 +35,7 @@ describe('AUTH TEST', () => {
         .send({
           email: 'test@test.com',
           password: 'test',
-          username: 'test',
+          name: 'test',
         })
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
