@@ -37,8 +37,8 @@ const facebook = (req, res, next) => {
 }
 
 const facebookCallback = passport.authenticate('facebook', {
-  successRedirect: '/api/auth/user',
-  failureRedirect: '/',
+  successRedirect: '/auth/user',
+  failureRedirect: '/auth/signin',
 })
 
 const logIn = (req, res, next) => {

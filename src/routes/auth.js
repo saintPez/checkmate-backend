@@ -9,6 +9,9 @@ const {
 
 const router = Router()
 
+router.get('/signin', (req, res) => {
+  res.render('signin')
+})
 router.post('/signin', signin)
 
 router.post('/signup', signup)

@@ -13,7 +13,7 @@ passport.use(
     {
       clientID: FACEBOOK_CLIENT_ID,
       clientSecret: FACEBOOK_CLIENT_SECRET,
-      callbackURL: '/api/auth/facebook/callback',
+      callbackURL: '/auth/facebook/callback',
       profileFields: ['id', 'displayName', 'photos'],
     },
     async (accessToken, refreshToken, profile, done) => {

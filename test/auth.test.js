@@ -5,10 +5,10 @@ beforeAll(() => sequelize.sync({ force: true }).then())
 afterAll(() => sequelize.close())
 
 describe('AUTH TEST', () => {
-  test('GET "api/user" without signin', () => {
+  test('GET "/user" without signin', () => {
     return new Promise((resolve, reject) => {
       api
-        .get('/api/user')
+        .get('/user')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
         .expect(401)
@@ -28,10 +28,10 @@ describe('AUTH TEST', () => {
     })
   })
 
-  test('POST "api/auth/signup"', () => {
+  test('POST "/auth/signup"', () => {
     return new Promise((resolve, reject) => {
       api
-        .post('/api/auth/signup')
+        .post('/auth/signup')
         .send({
           email: 'test@test.com',
           password: 'test',
@@ -52,10 +52,10 @@ describe('AUTH TEST', () => {
     })
   })
 
-  test('POST "api/auth/signin"', () => {
+  test('POST "/auth/signin"', () => {
     return new Promise((resolve, reject) => {
       agent
-        .post('/api/auth/signin')
+        .post('/auth/signin')
         .send({
           email: 'test@test.com',
           password: 'test',
@@ -75,10 +75,10 @@ describe('AUTH TEST', () => {
     })
   })
 
-  test('GET "api/user" with signin', () => {
+  test('GET "/user" with signin', () => {
     return new Promise((resolve, reject) => {
       agent
-        .get('/api/user')
+        .get('/user')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
         .expect(200)

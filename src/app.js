@@ -1,3 +1,5 @@
+const path = require('path')
+
 const express = require('express')
 
 const cors = require('cors')
@@ -7,6 +9,7 @@ const createError = require('http-errors')
 const session = require('express-session')
 const MySQLStore = require('express-mysql-session')(session)
 const passport = require('passport')
+const flash = require('connect-flash')
 
 const authRoutes = require('./routes/auth')
 const authUsers = require('./routes/user')
@@ -25,6 +28,11 @@ require('./passport/facebook')
 // App
 
 const app = express()
+
+// View engine
+
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 // Middlewares
 
@@ -48,15 +56,17 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(morgan('dev'))
+app.use(flash())
 
 // Routes
 
 app.get('/', (req, res) => {
-  res.json({})
+  req.flash('info', 'Flash is back!')
+  res.render('home', { info: req.flash('info') })
 })
 
-app.use('/api/auth', authRoutes)
-app.use('/api/user', authUsers)
+app.use('/auth', authRoutes)
+app.use('/user', authUsers)
 
 // Errors
 
